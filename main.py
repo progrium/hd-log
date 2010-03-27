@@ -4,7 +4,7 @@ from google.appengine.ext.webapp import util, template
 
 class Update(db.Model):
     user = db.UserProperty(auto_current_user_add=True)
-    body = db.StringProperty(required=True)
+    body = db.StringProperty(required=True, multiline=True)
     created = db.DateTimeProperty(auto_now_add=True)
 
 class Comment(db.Model):
