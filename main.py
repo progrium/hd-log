@@ -1,10 +1,17 @@
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
+from google.appengine.ext import webapp, db
+from google.appengine.ext.webapp import util, template
+
+class Update(db.Model):
+    user = db.UserProperty(auto_current_user_add=True)
+    body = db.StringProperty(required=True)
+    created = db.DateTimeProperty(auto_now_add=True)
+
 
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        self.response.out.write('Hello world!')
+        your_name = "Jeff"
+        self.response.out.write(template.render('templates/main.html', locals()))
 
 
 def main():

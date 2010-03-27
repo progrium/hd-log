@@ -1,0 +1,35 @@
+requirements
+============
+-members only access
+-members can post updates
+-members can comment on updates
+-members can get emailed updates
+
+wishlist
+========
+-gravatars for icons
+-tags in general (pretty useful)
+-linked mentions for other members 
+-members get notifications with notify.io
+-post daily archive to staff wiki
+-"share publicly" that lets bubble up to twitter
+-multiple log streams (tags? tabs?)
+-integrate Buzz/"activitystrea.ms" standards
+
+model
+=====
+Update
+ -created
+ -updated
+ -body
+ -user
+
+Comment
+ -created
+ -updated
+ -body
+ -user
+ -update (reference)
+
+Profile
+ -wants_emails
