@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-Hello world, {{your_name}}!
+<form method="post">
+  <textarea name="body"></textarea><br />
+  <input type="submit" value="Update" />
+</form>
+
+{% for update in updates %}
+<p>{{update.body}} | {{update.created|timesince}} ago | {{update.user.nickname}}</p>
+{% endfor %}
 
 {% endblock %}

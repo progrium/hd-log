@@ -1,4 +1,5 @@
 from google.appengine.ext import webapp, db
+from google.appengine.api import urlfetch, memcache, users
 from google.appengine.ext.webapp import util, template
 
 class Update(db.Model):
@@ -10,8 +11,18 @@ class Update(db.Model):
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        your_name = "Jeff"
+        user = users.get_current_user()
+        if user:
+            logout_url = users.create_logout_url('/')
+        else:
+            login_url = users.create_login_url('/')
+        updates = Update.all().order('-created')
         self.response.out.write(template.render('templates/main.html', locals()))
+    
+    def post(self):
+        update = Update(body=self.request.get('body'))
+        update.put()
+        self.redirect('/')
 
 
 def main():
