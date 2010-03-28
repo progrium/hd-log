@@ -9,7 +9,7 @@
 {% for update in updates %}
 <p>{{update.body}} | 
   {{update.created|timesince}} ago | 
-  {{update.user.nickname}} | 
+  {{update.userFullname}} | 
   <a href="javascript:void()" 
     onclick="toggleComment({{update.key.id}})" 
     id="comment-link-{{update.key.id}}">Comment</a>
@@ -22,7 +22,7 @@
       </form></p>
       {% for comment in update.comment_set %}
       <p style="margin-left: 20px;">{{comment.body}} | {{comment.created|timesince}} ago | 
-      {{comment.user.nickname}}</p>
+      {{comment.userFullname}}</p>
       {% endfor %}
 {% endfor %}
 
