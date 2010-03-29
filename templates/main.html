@@ -7,35 +7,29 @@
 </form>
 
 {% for update in updates %}
-<p>{{update.body}} | 
-  {{update.created|timesince}} ago | 
-  {{update.userFullname}} | 
-  <a href="javascript:void()" 
-    onclick="toggleComment({{update.key.id}})" 
-    id="comment-link-{{update.key.id}}">Comment</a>
-  <form action="/comment/{{update.key.id}}" 
-    method="post"
-    id="comment-form-{{update.key.id}}" 
-    style="display: none;">
-        <input type="text" name="body" /> <input type="submit" value="Comment" />
-        <a href="javascript:void()" onclick="toggleComment({{update.key.id}})">Cancel</a>
-      </form></p>
-      {% for comment in update.comment_set %}
-      <p style="margin-left: 20px;">{{comment.body}} | {{comment.created|timesince}} ago | 
-      {{comment.userFullname}}</p>
-      {% endfor %}
+  <p>{{update.body}} | {{update.created|timesince}} ago | {{update.userFullname}} | 
+    <a href="javascript:void()" onclick="toggleComment({{update.key.id}})" id="comment-link-{{update.key.id}}">Comment</a>
+    <form action="/comment/{{update.key.id}}" method="post" id="comment-form-{{update.key.id}}" style="display: none;">
+      <input type="text" name="body" /> <input type="submit" value="Comment" />
+      <a href="javascript:void()" onclick="toggleComment({{update.key.id}})">Cancel</a>
+    </form>
+  </p>
+  {% for comment in update.comment_set %}
+    <p style="margin-left: 20px;">
+      {{comment.body}} | {{comment.created|timesince}} ago | {{comment.userFullname}}
+    </p>
+  {% endfor %}
 {% endfor %}
 
-
 <script type="text/javascript">
-function toggleComment(id) {
-  if ($('#comment-form-'+id).css('display') == 'inline') {
-    $('#comment-form-'+id).css('display', 'none');
-    $('#comment-link-'+id).css('display', 'inline');
-  } else {
-    $('#comment-form-'+id).css('display', 'inline');
-    $('#comment-link-'+id).css('display', 'none');
+  function toggleComment(id) {
+    if ($('#comment-form-'+id).css('display') == 'inline') {
+      $('#comment-form-'+id).css('display', 'none');
+      $('#comment-link-'+id).css('display', 'inline');
+    } else {
+      $('#comment-form-'+id).css('display', 'inline');
+      $('#comment-link-'+id).css('display', 'none');
+    }
   }
-}
 </script>
 {% endblock %}
