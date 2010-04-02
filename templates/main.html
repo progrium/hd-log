@@ -7,7 +7,7 @@
 </form>
 
 {% for update in updates %}
-  <p>{{update.body}} | {{update.created|timesince}} ago | {{update.userFullname}} | 
+  <p>{{update.body}} | {{update.created|timesince}} ago | {{update.user_fullname}} | 
     <a href="javascript:void()" onclick="toggleComment({{update.key.id}})" id="comment-link-{{update.key.id}}">Comment</a>
     <form action="/comment/{{update.key.id}}" method="post" id="comment-form-{{update.key.id}}" style="display: none;">
       <input type="text" name="body" /> <input type="submit" value="Comment" />
@@ -16,7 +16,7 @@
   </p>
   {% for comment in update.comment_set %}
     <p style="margin-left: 20px;">
-      {{comment.body}} | {{comment.created|timesince}} ago | {{comment.userFullname}}
+      {{comment.body}} | {{comment.created|timesince}} ago | {{comment.user_fullname}}
     </p>
   {% endfor %}
 {% endfor %}

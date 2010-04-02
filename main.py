@@ -48,7 +48,7 @@ class Update(db.Model):
     body = db.StringProperty(required=True, multiline=True)
     created = db.DateTimeProperty(auto_now_add=True)
     
-    def userFullname(self):
+    def user_fullname(self):
       return fullname(username(self.user))
 
 class Comment(db.Model):
@@ -57,7 +57,7 @@ class Comment(db.Model):
     created = db.DateTimeProperty(auto_now_add=True)
     update = db.ReferenceProperty(Update)
 
-    def userFullname(self):
+    def user_fullname(self):
       return fullname(username(self.user))
 
 
